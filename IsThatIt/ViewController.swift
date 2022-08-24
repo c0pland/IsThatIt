@@ -35,10 +35,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 				fatalError("Cannot convert results to VNClassificationObservation")
 			}
 			print(results)
+			if let firstResult = results.first {
+				self.navigationItem.title = "Isn't it a \(firstResult.identifier)?"
+			}
 		}
 		let handler = VNImageRequestHandler(ciImage: image)
 		do{
-		try handler.perform([request])
+			try handler.perform([request])
 		} catch {
 			print(error)
 		}
